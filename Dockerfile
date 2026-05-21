@@ -10,10 +10,12 @@ COPY shared/package.json ./shared/
 COPY server/package.json ./server/
 COPY client/package.json ./client/
 
-# Install all deps (postinstall builds shared + server via turbo).
-RUN bun install
+# Install all deps. Skip lifecycle scripts because the root postinstall runs
+# `turbo build --filter=shared --filter=server`, which needs source files that
+# are not in the image yet.
+RUN bun install --ignore-scripts
 
-# Copy the rest of the sources and run the full build (adds client/dist).
+# Copy the rest of the sources, then run the full build once.
 COPY shared ./shared
 COPY server ./server
 COPY client ./client
