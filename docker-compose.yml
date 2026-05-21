@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: qris-dynamic:latest
+    pull_policy: build
     container_name: qris-dynamic
     restart: unless-stopped
     ports:
