@@ -1,35 +1,40 @@
 {
+  "name": "qris-dynamic",
+  "version": "1.0.0",
+  "description": "Dynamic QRIS payment code generator — BHVR (Bun + Hono + Vite + React)",
+  "license": "MIT",
+  "packageManager": "bun@1.2.4",
+  "workspaces": [
+    "./server",
+    "./client",
+    "./shared"
+  ],
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start"
+    "dev": "turbo dev",
+    "dev:client": "turbo dev --filter=client",
+    "dev:server": "turbo dev --filter=server",
+    "build": "turbo build",
+    "build:client": "turbo build --filter=client",
+    "build:server": "turbo build --filter=server",
+    "start": "bun run server/dist/index.js",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "postinstall": "turbo build --filter=shared --filter=server"
   },
-  "dependencies": {
-    "@radix-ui/react-label": "latest",
-    "@radix-ui/react-slot": "latest",
-    "@vercel/analytics": "latest",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "geist": "latest",
-    "lucide-react": "^0.454.0",
-    "next": "15.2.4",
-    "next-themes": "latest",
-    "qrcode": "latest",
-    "react": "^19",
-    "react-dom": "^19",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7",
-    "tw-animate-css": "latest"
-  },
+  "keywords": [
+    "bun",
+    "hono",
+    "react",
+    "vite",
+    "monorepo",
+    "turbo"
+  ],
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.9",
-    "@types/node": "^22",
-    "@types/qrcode": "^1.5.5",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8.5",
-    "tailwindcss": "^4.1.9",
-    "typescript": "^5"
+    "bun-types": "latest",
+    "turbo": "^2.6.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
   }
 }
